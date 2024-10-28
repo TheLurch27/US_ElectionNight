@@ -7,10 +7,8 @@ public class GameManager : MonoBehaviour
 
     public string SelectedCandidate { get; private set; }
     public string ComputerCandidate { get; private set; }
-
-    // Standardwerte für Electors und Money
     public int Electors { get; private set; } = 0;
-    public int Money { get; private set; } = 250;
+    public int Money { get; private set; } = 250000;
 
     private List<string> candidates = new List<string>
     {
@@ -34,7 +32,7 @@ public class GameManager : MonoBehaviour
     {
         SelectedCandidate = candidateName;
         Debug.Log("Spieler-Kandidat: " + SelectedCandidate);
-        ChooseComputerCandidate(); // Wähle den Computer-Kandidaten, sobald der Spieler seinen Kandidaten festgelegt hat
+        ChooseComputerCandidate();
     }
 
     public void ChooseComputerCandidate()

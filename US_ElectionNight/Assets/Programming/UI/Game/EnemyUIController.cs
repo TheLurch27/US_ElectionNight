@@ -3,12 +3,12 @@ using TMPro;
 using UnityEngine.UI;
 using System.Collections.Generic;
 
-public class PlayerUIController : MonoBehaviour
+public class EnemyUIController : MonoBehaviour
 {
-    public Image playerImage;
-    public TextMeshProUGUI playerNameText;
-    public TextMeshProUGUI playerElectorNumberText;
-    public TextMeshProUGUI playerMoneyNumberText;
+    public Image computerImage;
+    public TextMeshProUGUI computerNameText;
+    public TextMeshProUGUI computerElectorNumberText;
+    public TextMeshProUGUI computerMoneyNumberText;
 
     public Sprite AngelaMerkelUI;
     public Sprite BillClintonUI;
@@ -21,18 +21,18 @@ public class PlayerUIController : MonoBehaviour
 
     private void Start()
     {
-        UpdatePlayerUI();
+        UpdateComputerUI();
     }
 
-    public void UpdatePlayerUI()
+    public void UpdateComputerUI()
     {
-        string candidateName = GameManager.Instance.SelectedCandidate;
+        string computerCandidateName = GameManager.Instance.ComputerCandidate;
 
-        playerNameText.text = candidateName;
-        playerImage.sprite = GetCandidateSprite(candidateName);
+        computerNameText.text = computerCandidateName;
+        computerImage.sprite = GetCandidateSprite(computerCandidateName);
 
-        playerElectorNumberText.text = GameManager.Instance.Electors.ToString();
-        playerMoneyNumberText.text = GameManager.Instance.Money.ToString();
+        computerElectorNumberText.text = GameManager.Instance.Electors.ToString();
+        computerMoneyNumberText.text = GameManager.Instance.Money.ToString();
     }
 
     private Sprite GetCandidateSprite(string candidateName)

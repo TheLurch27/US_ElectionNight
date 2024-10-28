@@ -14,7 +14,6 @@ public class MainMenuButtonManager : MonoBehaviour
 
     private void Start()
     {
-        // Weist den Buttons die entsprechenden Methoden zu
         feedbackButton.onClick.AddListener(LoadFeedbackScene);
         settingsButton.onClick.AddListener(LoadSettingsScene);
         singlePlayButton.onClick.AddListener(LoadSinglePlayChooseCandidatesScene);

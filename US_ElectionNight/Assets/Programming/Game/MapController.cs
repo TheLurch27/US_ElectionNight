@@ -18,12 +18,14 @@ public class MapController : MonoBehaviour
 
     private void Start()
     {
-        // Stelle sicher, dass die Kamera sofort in der Standardposition startet
-        defaultCameraPosition = new Vector3(0, 0, -10); // Passe diese Werte ggf. an deine gewünschte Startposition an
+        // Setze die Startposition und -größe direkt in der Kamera
+        defaultCameraPosition = new Vector3(0, 0, -10); // Passe dies an die gewünschte Standardansicht an
+        defaultCameraSize = 5f; // Setze diesen Wert auf die gewünschte Zoomgröße
+
         mainCamera.transform.position = defaultCameraPosition;
         mainCamera.orthographicSize = defaultCameraSize;
 
-        // Ursprüngliche Farben der Staaten speichern
+        // Alle Staaten speichern und die ursprüngliche Farbe festhalten
         foreach (Transform state in transform)
         {
             SpriteRenderer renderer = state.GetComponent<SpriteRenderer>();
@@ -34,6 +36,7 @@ public class MapController : MonoBehaviour
         }
     }
 
+
     private void Update()
     {
         if (Input.GetMouseButtonDown(0) && !isReturningToDefault)
@@ -43,17 +46,14 @@ public class MapController : MonoBehaviour
 
             if (hit.collider != null && originalColors.ContainsKey(hit.collider.gameObject))
             {
-                // Ein neuer Staat wird ausgewählt, auch wenn bereits ein anderer Staat ausgewählt ist
                 SelectState(hit.collider.gameObject);
             }
             else if (hit.collider == null && selectedState != null)
             {
-                // Klick auf eine freie Fläche
                 DeselectState();
             }
         }
 
-        // Kamera sanft zur Zielposition bewegen
         if (selectedState != null)
         {
             mainCamera.transform.position = Vector3.Lerp(mainCamera.transform.position, new Vector3(selectedState.transform.position.x, selectedState.transform.position.y, mainCamera.transform.position.z), Time.deltaTime * moveSpeed);
@@ -61,11 +61,9 @@ public class MapController : MonoBehaviour
         }
         else if (isReturningToDefault)
         {
-            // Kamera zur Standardposition zurückkehren
             mainCamera.transform.position = Vector3.Lerp(mainCamera.transform.position, defaultCameraPosition, Time.deltaTime * moveSpeed);
             mainCamera.orthographicSize = Mathf.Lerp(mainCamera.orthographicSize, defaultCameraSize, Time.deltaTime * zoomSpeed);
 
-            // Wenn die Kamera die Standardposition erreicht hat, schalte die Steuerung wieder frei
             if (Vector3.Distance(mainCamera.transform.position, defaultCameraPosition) < 0.1f && Mathf.Abs(mainCamera.orthographicSize - defaultCameraSize) < 0.1f)
             {
                 isReturningToDefault = false;
@@ -75,11 +73,9 @@ public class MapController : MonoBehaviour
 
     private void SelectState(GameObject state)
     {
-        // Setze den neuen ausgewählten Staat
         selectedState = state;
-        isReturningToDefault = false; // Wir sind im Auswahlmodus, daher die Rückkehr zur Standardposition beenden
+        isReturningToDefault = false;
 
-        // Alle anderen Staaten abdunkeln
         foreach (Transform otherState in transform)
         {
             SpriteRenderer renderer = otherState.GetComponent<SpriteRenderer>();
@@ -93,9 +89,8 @@ public class MapController : MonoBehaviour
     private void DeselectState()
     {
         selectedState = null;
-        isReturningToDefault = true; // Kamera zurück in die Default-Position bringen
+        isReturningToDefault = true;
 
-        // Alle Staaten auf ihre Originalfarben zurücksetzen
         foreach (Transform state in transform)
         {
             SpriteRenderer renderer = state.GetComponent<SpriteRenderer>();

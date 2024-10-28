@@ -10,12 +10,10 @@ public class SinglePlayChooseCandidateButtonManager : MonoBehaviour
 
     private void Start()
     {
-        // Initialisiere die Button-Events
         backButton.onClick.AddListener(LoadMainMenu);
         shopButton.onClick.AddListener(LoadShop);
         nextButton.onClick.AddListener(LoadGameScene);
 
-        // Deaktiviere den Next-Button zu Beginn
         SetNextButtonActive(false);
     }
 
@@ -38,6 +36,6 @@ public class SinglePlayChooseCandidateButtonManager : MonoBehaviour
     {
         nextButton.interactable = isActive;
         Color buttonColor = isActive ? Color.white : Color.gray;
-        nextButton.GetComponent<Image>().color = buttonColor; // Setzt die Farbe auf grau, wenn deaktiviert
+        nextButton.GetComponent<Image>().color = buttonColor;
     }
 }

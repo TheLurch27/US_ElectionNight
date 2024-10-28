@@ -21,7 +21,6 @@ public class CandidateSelector : MonoBehaviour, IPointerEnterHandler, IPointerEx
         originalScale = transform.localScale;
         originalRotation = transform.rotation;
 
-        // Referenzen auf ButtonManager und GameManager
         buttonManager = FindObjectOfType<SinglePlayChooseCandidateButtonManager>();
         gameManager = GameManager.Instance;
     }
@@ -54,12 +53,10 @@ public class CandidateSelector : MonoBehaviour, IPointerEnterHandler, IPointerEx
         transform.localScale = originalScale * selectedScaleFactor;
         selectedCandidate = this;
 
-        // Aktiviere den Next-Button und speichere die Kandidatenauswahl
         buttonManager.SetNextButtonActive(true);
-        gameManager.SetSelectedCandidate(gameObject.name); // Kandidatenname an GameManager übergeben
+        gameManager.SetSelectedCandidate(gameObject.name);
     }
 
-    // Deselect-Methode zum Zurücksetzen der Größe und Rotation
     public void Deselect()
     {
         isSelected = false;
@@ -69,7 +66,6 @@ public class CandidateSelector : MonoBehaviour, IPointerEnterHandler, IPointerEx
 
     private void Update()
     {
-        // Falls ausgewählt, führe Wabbel-Effekt aus
         if (isSelected)
         {
             float wobbleAngle = Mathf.Sin(Time.time * wobbleSpeed) * wobbleIntensity;
