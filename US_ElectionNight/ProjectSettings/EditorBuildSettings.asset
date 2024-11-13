@@ -12,7 +12,7 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: 52936e43074167e4083c5f8971395724
   - enabled: 1
-    path: Assets/Scenes/SinglePlay_ChooseCandidates.unity
+    path: Assets/Scenes/CandidateChooseScene.unity
     guid: 36570a7000072c141b37d05cb482b82b
   - enabled: 1
     path: Assets/Scenes/Shop.unity
@@ -26,4 +26,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/FindAGameScene.unity
     guid: b2c2aa5c953fcca47836d9b6c95648e8
+  - enabled: 1
+    path: Assets/Scenes/PassAndPlayScene.unity
+    guid: 1d68f8485e9bc414da85479af34da9b9
+  - enabled: 1
+    path: Assets/Scenes/ColorChooseScene.unity
+    guid: 856f7ad5bac192040b0cde8f65466796
   m_configObjects: {}
